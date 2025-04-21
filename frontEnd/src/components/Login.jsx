@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     try {
       const response = await fetch(`${API_BASE_URL}/login`, {
         method: 'POST',
@@ -27,6 +27,14 @@ const Login = () => {
     } catch {
       setError('Failed to connect to server.');
     }
+  };
+
+  const handleForgotPasswordClick = () => {
+    navigate('/forgot-password'); // Navigate to Forgot Password page
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/register'); // Navigate to Register page
   };
 
   return (
@@ -84,7 +92,7 @@ const Login = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-.274.837-.684 1.613-1.208 2.292M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-.274-.837-.684-1.613-1.208-2.292M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
             ) : (
@@ -113,12 +121,18 @@ const Login = () => {
         </button>
       </form>
       <div className="mt-4 flex justify-between text-sm">
-        <a href="/forgot-password" className="text-blue-600 hover:underline">
+        <button
+          onClick={handleForgotPasswordClick}
+          className="text-blue-600 hover:underline"
+        >
           Forgot Password?
-        </a>
-        <a href="/register" className="text-blue-600 hover:underline">
+        </button>
+        <button
+          onClick={handleRegisterClick}
+          className="text-blue-600 hover:underline"
+        >
           Register
-        </a>
+        </button>
       </div>
     </div>
   );
